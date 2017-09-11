@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script type="text/javascript" src="../../scripts/jquery-3.1.1.js"></script>
+    <title>The Parabola Plotter</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../Content/Style.css" />
+</head>
+
+<body>
+    <form action="/Home/Compute" id="inputForm">
+        <h3>Fill in the form</h3>
+        <br />Function: y=
+        <input name="param" pattern="(\d,\d*)|(\d+)|(-\d+)" size="3" placeholder="-1 3 7,5" required>
+        x^2+
+        <input name="param" pattern="(\d,\d*)|(\d+)|(-\d+)" size="3" placeholder="-1 3 7,5" required>
+        x+
+        <input name="param" pattern="(\d,\d*)|(\d+)|(-\d+)" size="3" placeholder="-1 3 7,5" required>
+        <br />Step:
+        <input name="param" pattern="(\d,\d*)|(\d+)" size="3" placeholder="3 7,5" required>
+        <br />From:
+        <input name="param" pattern="(\d,\d*)|(\d+)|(-\d+)" size="3" placeholder="-1 3 7,5" required>
+        to
+        <input name="param" pattern="(\d,\d*)|(\d+)|(-\d+)" size="3" placeholder="-1 3 7,5" required>
+        <input type="submit" value="Plot" />
+    </form>
+
+    <div id="curve_chart" style="width: 350px; height: 700px">
+        <h3>Chart</h3>
+    </div>
+
+    <div id="data_table" style="width: 150px; height: 500px">
+        <h3>Current Data</h3>
+    </div>
+
+    <script>
+        var dataForChart;
+        $("#inputForm").submit(function (event) {
+            event.preventDefault();
+            var $form = $(this),
+                term = document.getElementsByName('param'),
+                url = $form.attr('action');
+
+            console.log($('inputForm').toString())
+
+            var jqxhr = $.post(url, $('#inputForm').serialize(), //{ 'a': $('#a').val(), 'b': $('#b').val(), 'c': $('#c').val(), 'step': $('#step').val(), 'fangeFrom': $('#rangeFrom').val(), 'rangeTo': $('#rangeTo').val() },
+                    function (jsonData) {
+                        //var elementX = data[1].X;
+                        console.log(jsonData);
+                        dataForChart = jsonData;
+                        drawChart();
+                        $.each(jsonData, function (i) {
+                            $("#data_table").append("<li>" + "X: " + jsonData[i].X + "; Y: " + jsonData[i].Y + "</li>")
+                        });
+                    });
+        });
+
+        google.charts.load('current', { 'packages': ['corechart', 'line'] });
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'X');
+            data.addColumn('number', 'Y');
+
+            for (var i = 0; i < dataForChart.length; i++) {
+                data.addRow([dataForChart[i].X, dataForChart[i].Y])
+            }
+
+            var options = {
+                title: 'Porabola',
+                curveType: 'function',
+                legend: { position: 'bottom' },
+                //orientation: 'vertical',
+                hAxis: {
+                    title: 'X'
+                },
+                vAxis: {
+                    title: 'Y'
+                },
+                backgroundColor: 'transparent',
+
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+</body>
+</html>

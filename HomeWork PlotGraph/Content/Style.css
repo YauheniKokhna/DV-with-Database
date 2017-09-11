@@ -1,0 +1,173 @@
+/* --------------- reset.css --------------- */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, em, img, strong, sub, sup, b, u, i, dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0; /* обнул€ем отступы и убираем бордюры */
+    vertical-align: baseline; /* приводим все к одной базовой линии */
+    background: transparent; /* чтобы не использовались фоны, установленные по умолчанию */
+    font-size: 100%; /* размер шрифта всем одинаковый */
+}
+
+a { /* ссылка не в общем списке чтобы не сбрасывать outline по умолчанию */
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    outline: none;
+}
+
+table { /* устран€ем отступы между €чейками таблицы */
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td, td img {
+    vertical-align: top; /* возвращаем привычное вертикальное выравнивание */
+}
+
+input, select, button, textarea {
+    margin: 0; /* убираем отступы по умолчанию дл€ элементов форм (в частности дл€ checkbox и radio) */
+    font-size: 100%; /* делаем размер шрифтов везде одинаковым */
+    outline: none;
+}
+
+    input[type="text"], input[type="password"], textarea {
+        padding: 0; /* убираем внутренние отступы дл€ текстовых полей */
+    }
+
+    input[type="checkbox"] { /* вертикальное выравнивание чекбоксов и радиобатонов относительно меток */
+        vertical-align: bottom;
+    }
+
+    input[type="radio"] {
+        vertical-align: text-bottom;
+    }
+
+sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+    nav ul {
+        list-style: none;
+    }
+/* --------------- /reset.css --------------- */
+
+
+
+
+
+/* --------------- базовые настройки ---------*/
+html {
+    min-height: 100%; /* всегда показываем вертикальную полосу прокрутки  */
+}
+
+body {
+    color: #000;
+    text-align: left;
+    font-size: 1em; /* используем безопасные шрифтовые CSS стеки */
+    min-height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    text-shadow: 0px 0px 3px white, 0 0 8px white, 0 0 20px white;
+}
+
+a, a:visited { /* пор€док правил дл€ ссылок имеет значение */
+    color: #e6618c;
+    text-decoration: underline;
+}
+
+    a:hover {
+        color: #fdf208;
+        text-decoration: none;
+    }
+
+    a:focus, a:active {
+        color: #c83867;
+        text-decoration: underline;
+    }
+
+h1, h2, h3, h4, h5, h6, div {
+    font-weight: normal;
+}
+
+img {
+    max-width: 100%;
+}
+
+.clr {
+    clear: both;
+}
+
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+/* --------------- /базовые настройки ---------*/
+#inputForm {
+    position: absolute;
+    top: 40px;
+    left: 700px;
+    bottom: 0;
+    right: 0;
+}
+
+#curve_chart {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    bottom: 0;
+    right: 0;
+}
+
+#data_table {
+    position: absolute;
+    top: 20px;
+    left: 380px;
+    bottom: 0;
+    right: 0;
+}
+
+body {
+    background: url(../../Content/BackgroungImage2.jpg) center center no-repeat;
+    color: rgb(90, 57, 57);
+    background-size: cover;
+    padding: 30px 30px;
+}
+    body > h2 {
+        font-size: 2em;
+        padding: 20px 10px 10px 10px;
+    }
+
+    body > h1 {
+        font-size: 2.5em;
+        padding: 10px 10px 10px 10px;
+        text-align: center;
+    }
+
+    body > div {
+        color: black;
+        cursor: pointer;
+        padding: 20px 10px 10px 100px;
+    }
+
+    div > h3 {
+        font-size: 1.2em;
+        padding: 20px 10px 10px 10px;
+    }
+
+    form > h3 {
+        font-size: 1.2em;
+        padding: 20px 10px 10px 10px;
+    }
